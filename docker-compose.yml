@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: devboard_db
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+      - ./database/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - devboard-network
+
+  backend:
+    build: ./backend
+    container_name: devboard_api
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/devboard
+    depends_on:
+      - mongodb
+    networks:
+      - devboard-network
+
+  frontend:
+    image: nginx:alpine
+    container_name: devboard_ui
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    networks:
+      - devboard-network
+
+networks:
+  devboard-network:
+    driver: bridge
+
+volumes:
+  mongo_data:

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevBoard | Feedback Management</title>
+    <meta name="description" content="A professional three-tier feedback management system with Flask, MongoDB, and Docker.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container fade-in">
+        <header>
+            <h1 class="glow-text">💬 DevBoard</h1>
+            <p class="subtitle">Premium Feedback Management System</p>
+        </header>
+
+        <section class="form-card glass-morphism">
+            <h2>Submit Feedback</h2>
+            <form id="feedbackForm">
+                <div class="input-group">
+                    <input type="text" id="name" required placeholder=" ">
+                    <label for="name">Your Name</label>
+                </div>
+                <div class="input-group">
+                    <textarea id="msg" required placeholder=" " rows="4"></textarea>
+                    <label for="msg">Your Feedback</label>
+                </div>
+                <button type="submit" id="submitBtn">
+                    <span class="btn-text">Send Feedback</span>
+                    <span class="btn-loader"></span>
+                </button>
+            </form>
+        </section>
+
+        <section class="list-section">
+            <div class="section-header">
+                <h2>Stored Feedback</h2>
+                <button id="refreshBtn" title="Refresh List">🔄</button>
+            </div>
+            <div id="feedbackList" class="feedback-grid">
+                <!-- Feedback items will be injected here -->
+                <div class="loader-container">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
